@@ -1,0 +1,26 @@
+{
+  "name": "tigergate-security-playground",
+  "version": "1.0.0",
+  "description": "An educational project intentionally containing vulnerabilities to test code security platforms like TigerGate.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "educational",
+    "security",
+    "vulnerabilities",
+    "sast",
+    "sca",
+    "secrets",
+    "iac"
+  ],
+  "author": "TigerGate Learning",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "8.5.1",
+    "lodash": "4.17.15",
+    "sqlite3": "^5.1.7"
+  }
+}
