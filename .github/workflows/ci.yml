@@ -16,11 +16,14 @@ env:
 
 jobs:
   security-scan:
-    name: TigerGate Full Repository Scan
+    name: ${{ github.event_name == 'pull_request' && 'PR Diff Scan' || 'Full Scan (main)' }}
     runs-on: ubuntu-latest
 
     container:
       image: tigergate/tigergate-cli:latest
+
+    env:
+      SCAN_SCOPE: ${{ github.event_name == 'pull_request' && 'diff' || 'auto' }}
 
     steps:
       - name: Checkout Repository
@@ -29,16 +32,19 @@ jobs:
           fetch-depth: 0
 
       - name: Prepare Git
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Run TigerGate Full Scan
+      - name: Fetch PR base branch
+        if: github.event_name == 'pull_request'
+        run: git fetch --no-tags origin "+refs/heads/${GITHUB_BASE_REF}:refs/remotes/origin/${GITHUB_BASE_REF}"
+
+      - name: Run TigerGate Scan
         env:
           TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
         run: |
           tigergate scan \
             --type all \
-            --scan-scope auto \
+            --scan-scope "$SCAN_SCOPE" \
             --fail-on critical,high \
             --quality-gate \
             --upload
