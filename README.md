@@ -7,7 +7,7 @@ This is a small, educational Node.js project designed to test code security plat
 
 ---
 
-## Project Structure
+## Project Structure explained
 
 ```
 project/
