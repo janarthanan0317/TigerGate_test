@@ -7,7 +7,7 @@ This is a small, educational Node.js project designed to test code security plat
 
 ---
 
-## Project Structure
+## Project Structure explained
 
 ```
 project/
@@ -84,3 +84,12 @@ project/
   ```bash
   curl "http://localhost:3000/api/ping?host=127.0.0.1;%20ls%20-la"
   ```
+PORT=3000
+
+# AWS Configuration (Normally loaded from environment, but hardcoded in config/aws.js for educational purposes)
+AWS_ACCESS_KEY_ID=AKIA7Q2N8X4P1L5M9R2A
+AWS_SECRET_ACCESS_KEY=R4vT9xLm2Qw8zNp5HsK3yJc7UfE1Bg6MdP0XaYnZ
+AWS_REGION=us-east-1
+
+# GitHub Configuration (Normally loaded from environment, but hardcoded in routes/api.js for educational purposes)
+GGITHUB_PAT=ghp_A7kLm9Xq2Pr8Nz5Vb1Tc6Ys4Hd0Fw3Je8RuM
